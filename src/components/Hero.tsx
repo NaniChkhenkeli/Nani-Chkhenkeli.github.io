@@ -580,6 +580,9 @@ const Hero = () => {
       }}
     >
         <div className="absolute inset-0 bg-black/70 z-0"></div>
+        <button className="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-lg text-lg font-semibold transition-colors magic-hover magic-hover__square">
+          View My Work
+        </button>
 
       
       {/* Matrix Rain Effect */}
