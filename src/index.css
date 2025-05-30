@@ -1,0 +1,202 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Abel');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 10% 90%;
+    --foreground: 240 10% 3.9%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    
+    --primary: 270 75% 60%;
+    --primary-foreground: 0 0% 98%;
+    
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 240 6% 10%;
+    
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 46%;
+    
+    --accent: 273 68% 59%;
+    --accent-foreground: 0 0% 98%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 270 75% 60%;
+    
+    --radius: 0px;
+  }
+
+  .dark {
+    --background: 240 10% 5%;
+    --foreground: 0 0% 98%;
+    
+    --card: 240 10% 10%;
+    --card-foreground: 0 0% 98%;
+    
+    --popover: 240 10% 8%;
+    --popover-foreground: 0 0% 98%;
+    
+    --primary: 270 75% 70%;
+    --primary-foreground: 0 0% 2%;
+    
+    --secondary: 240 5% 15%;
+    --secondary-foreground: 0 0% 98%;
+    
+    --muted: 240 5% 15%;
+    --muted-foreground: 240 5% 65%;
+    
+    --accent: 273 68% 59%;
+    --accent-foreground: 0 0% 98%;
+    
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 240 5% 26%;
+    --input: 240 5% 26%;
+    --ring: 270 75% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground transition-colors duration-300;
+    background-image: url("../components/images/bot2.png");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+  }
+  
+  /* Pixel borders */
+  .pixel-borders {
+    @apply border-2 border-pixel-purple p-1 relative;
+    box-shadow: 0 0 0 4px rgba(163, 121, 240, 0.4);
+    image-rendering: pixelated;
+  }
+  
+  /* Grid background */
+  .grid-bg {
+    background-image: 
+      repeating-linear-gradient(to right, rgba(163, 121, 240, 0.1) 0, rgba(163, 121, 240, 0.1) 1px, transparent 1px, transparent 100px),
+      repeating-linear-gradient(to bottom, rgba(163, 121, 240, 0.1) 0, rgba(163, 121, 240, 0.1) 1px, transparent 1px, transparent 100px);
+    background-size: 100px 100px;
+  }
+  
+  /* Loading screen styles */
+  .loading-screen {
+    @apply bg-pixel-dark font-pixel text-pixel-purple flex justify-center items-center min-h-screen flex-col;
+  }
+  
+  .loading-bar {
+    @apply flex border-4 border-pixel-pink p-1 rounded-lg mb-5;
+  }
+  
+  .block {
+    @apply w-5 h-8 m-0.5 bg-transparent border border-pixel-purple;
+  }
+  
+  /* Pixel-perfect animations */
+  .pixel-animate {
+    transition: all 0.2s steps(5);
+  }
+
+  /* Pixel button */
+  .pixel-btn {
+    @apply font-pixel text-xs py-2 px-4 border-2 border-pixel-purple bg-transparent text-pixel-purple hover:bg-pixel-purple hover:text-black transition-colors;
+    box-shadow: 4px 4px 0 rgba(163, 121, 240, 0.4);
+  }
+  
+  .pixel-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 rgba(163, 121, 240, 0.4);
+  }
+
+  /* Terminal text */
+  .terminal-text::after {
+    content: "_";
+    @apply animate-blink;
+  }
+  
+  /* Project carousel */
+  .carousel-container {
+    @apply relative w-full h-screen overflow-hidden;
+  }
+  
+  /* Vertical menu */
+  .vertical-menu {
+    @apply fixed top-0 left-0 w-12 h-full cursor-pointer flex items-center justify-center z-10 bg-pixel-dark transition-all duration-500;
+  }
+  
+  .vertical-menu-text {
+    @apply text-gray-400 transform translate-y-16 -rotate-90 mt-8 font-bold tracking-wider transition-all duration-500 absolute opacity-0 text-sm z-10;
+  }
+  
+  .vertical-menu:hover .vertical-menu-text {
+    @apply transform translate-y-10 -rotate-90 opacity-100;
+  }
+  
+  .menu-bars {
+    @apply flex w-1/2 flex-col items-center justify-between h-10 z-10;
+  }
+  
+  .menu-bars span {
+    @apply w-1 h-10 bg-gray-600 transition-all duration-500;
+  }
+  
+  .vertical-menu:hover .menu-bars span:first-child,
+  .vertical-menu:hover .menu-bars span:last-child {
+    @apply transform -translate-y-1 opacity-0;
+  }
+  
+  .vertical-menu:hover .menu-bars span:nth-child(2) {
+    @apply transform scale-y-110 origin-bottom;
+  }
+  
+  .vertical-menu:hover .menu {
+    @apply transform translate-x-12;
+  }
+  
+  .menu {
+    @apply absolute top-0 left-0 bg-pixel-dark h-full border-r border-gray-700 transform -translate-x-full transition-all duration-700 ease-out py-12 px-12 w-64;
+  }
+  
+  .menu ul li {
+    @apply text-gray-200 text-xl cursor-pointer py-3 w-40 overflow-hidden;
+  }
+  
+  .menu ul li:first-of-type {
+    @apply pt-0;
+  }
+  
+  .menu ul li:last-of-type {
+    @apply pb-0;
+  }
+  
+  .menu ul li p {
+    @apply transform translate-y-28 transition-all duration-700 ease-out;
+  }
+  
+  .vertical-menu:hover .menu ul li p {
+    @apply transform translate-y-0;
+  }
+  
+  .menu ul:hover > li:not(:hover) {
+    @apply text-gray-500;
+  }
+}
